@@ -5,6 +5,18 @@ s.onload = function () {
 };
 (document.head || document.documentElement).appendChild(s);
 
-chrome.cookies.getAll({ url: "https://learn.viblo.asia" }, (cookies) => {
-  console.log(cookies);
-});
+
+var v = document.createElement("script");
+v.src = chrome.runtime.getURL('fe-question-full-vi.js');
+v.onload = function () {
+  this.remove();
+};
+(document.head || document.documentElement).appendChild(v);
+
+
+var e = document.createElement("script");
+e.src = chrome.runtime.getURL('fe-question-full-en.js');
+e.onload = function () {
+  this.remove();
+};
+(document.head || document.documentElement).appendChild(e);

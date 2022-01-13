@@ -1,4 +1,3 @@
-console.log("dcmmmm");
 
 /* eslint-disable no-var */
 var lang = "en";
@@ -18,8 +17,13 @@ var fetchQuestions = async () => {
         },
         method: "GET",
       }
-    );
-    return data.json();
+    ).then(async (r) => {
+      if (r.ok) {
+        return await r.json();
+      }
+      return lang === "en" ? en : vi;
+    });
+    return data;
   } catch (err) {
     console.log(err.message);
   }
@@ -75,10 +79,6 @@ async function run() {
 
   for (const questionNumber of questionNumberList) {
     // questionNumber.querySelector("a").click();
-
-    var reactInternalInstanceKeyy = Object.keys(
-      questionNumber.querySelector("a")
-    ).find((key) => key.startsWith("__reactEventHandlers$"));
 
     const oldHandler = questionNumber.querySelector("a").onclick;
     questionNumber.querySelector("a").onclick = null;
