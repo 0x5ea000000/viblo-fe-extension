@@ -33,6 +33,8 @@ var fetchQuestions = async () => {
     return data;
   } catch (err) {
     console.log(err.message);
+    console.log("Đừng lo đại ca, em có backup")
+    return lang === "en" ? en : vi;
   }
 };
 
