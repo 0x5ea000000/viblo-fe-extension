@@ -1,6 +1,13 @@
 
 /* eslint-disable no-var */
-var lang = "en";
+// Example URL: https://learn.viblo.asia/en/courses/fundamental-information-technology-engineer-examination-fe-VolejRejNm/exams/15/en/attempt?question=10
+var lang = document.location.href.split("/")[8];
+if (lang !== "en" && lang !== "vi") {
+  lang = document.location.href.split("/")[7]; // in case language locale is omitted
+  if (lang !== "en" && lang !== "vi") {
+    console.error("có lỗi gì đó rồi đại ca")
+  }
+}
 var timeout = 1000;
 var shouldAutoClick = true;
 var fetchQuestions = async () => {
@@ -26,6 +33,8 @@ var fetchQuestions = async () => {
     return data;
   } catch (err) {
     console.log(err.message);
+    console.log("Đừng lo đại ca, em có backup")
+    return lang === "en" ? en : vi;
   }
 };
 
